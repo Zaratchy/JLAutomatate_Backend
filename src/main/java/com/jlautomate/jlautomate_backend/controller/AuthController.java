@@ -51,6 +51,8 @@ public class AuthController {
                 .email(req.getEmail())
                 .password(req.getPassword()) // l'encodage se fait dans UserService
                 .roles("USER")
+                .firstName(req.getFirstName())
+                .lastName(req.getLastName())
                 .build();
 
         User saved = userService.registerUser(newUser);
@@ -60,6 +62,8 @@ public class AuthController {
         LoginResponse.UserDto userDto = LoginResponse.UserDto.builder()
                 .id(saved.getId())
                 .email(saved.getEmail())
+                .firstName(saved.getFirstName())
+                .lastName(saved.getLastName())
                 .roles(saved.getRoles().split(","))
                 .build();
 

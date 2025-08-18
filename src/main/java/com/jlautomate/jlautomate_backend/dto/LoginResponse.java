@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 public class LoginResponse {
     private String accessToken;
-    private String tokenType = "Bearer";
+    private String tokenType;
     private long expiresIn = 3600;
     private UserDto user;
 
@@ -20,5 +20,7 @@ public class LoginResponse {
         private Long id;
         private String email;
         private String[] roles;
+        private String firstName;  // ajouté
+        private String lastName;   // ajouté
     }
 }
