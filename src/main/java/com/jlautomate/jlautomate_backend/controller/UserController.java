@@ -28,4 +28,20 @@ public class UserController {
         if (user == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(user);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        boolean deleted = userService.deleteById(id);
+        return deleted ? ResponseEntity.noContent().build()
+                : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        // On enregistre avec le service (qui hash déjà le password)
+        User saved = userService.registerUser(user);
+        return ResponseEntity.ok(saved);
+    }
+
+
 }
